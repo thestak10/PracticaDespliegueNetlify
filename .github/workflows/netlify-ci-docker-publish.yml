@@ -58,7 +58,7 @@ jobs:
           fi
           BUILD_BLOCK="<p>Build: $BUILD_TS - SHA: $BUILD_SHA - Image: $BUILD_TAG</p>"
           if grep -q "<!-- BUILD_INFO -->" "$SITE_INDEX"; then
-            perl -0777 -pe "s/<!-- BUILD_INFO -->.*<!-- END_BUILD_INFO -->/<!-- BUILD_INFO -->\n$BUILD_BLOCK\n<!-- END_BUILD_INFO -->/s" -i "$SITE_INDEX"
+            perl -0777 -pe "s|<!-- BUILD_INFO -->.*<!-- END_BUILD_INFO -->|<!-- BUILD_INFO -->\n$BUILD_BLOCK\n<!-- END_BUILD_INFO -->|s" -i "$SITE_INDEX"
           else
             if grep -q "</body>" "$SITE_INDEX"; then
               perl -0777 -pe "s|</body>|<!-- BUILD_INFO -->\n$BUILD_BLOCK\n<!-- END_BUILD_INFO -->\n</body>|s" -i "$SITE_INDEX"
